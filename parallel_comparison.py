@@ -13,7 +13,7 @@ def heavy_computation(n=100_000):
 
 
 def run_sequential(num_tasks, complexity):
-    print("🔁 Running tasks sequentially...")
+    print(" Running tasks sequentially")
     start = time.time()
     for i in range(num_tasks):
         heavy_computation(complexity)
@@ -22,7 +22,7 @@ def run_sequential(num_tasks, complexity):
 
 
 def run_multiprocessing(num_tasks, complexity):
-    print("⚙️ Running tasks using multiprocessing...")
+    print(" Running tasks using multiprocessing")
     start = time.time()
     with ProcessPoolExecutor() as executor:
         futures = [executor.submit(heavy_computation, complexity) for _ in range(num_tasks)]
@@ -48,7 +48,7 @@ def plot_results(sequential_time, multiprocessing_time):
                  f"{t:.2f}s", ha='center', fontsize=12)
 
     speedup = sequential_time / multiprocessing_time if multiprocessing_time else 0
-    plt.figtext(0.5, 0.01, f"⚡ Speedup Achieved: {speedup:.2f}x",
+    plt.figtext(0.5, 0.01, f" Speedup Achieved: {speedup:.2f}x",
                 ha='center', fontsize=11, color='gray')
     plt.tight_layout()
     plt.show()
@@ -61,7 +61,7 @@ if __name__ == "__main__":
     seq_time = run_sequential(TASKS, COMPLEXITY)
     mp_time = run_multiprocessing(TASKS, COMPLEXITY)
 
-    print(f"\n📊 Summary:")
+    print(f"\n Summary:")
     print(f"Sequential Time      : {seq_time:.2f}s")
     print(f"Multiprocessing Time : {mp_time:.2f}s")
     print(f"Speedup              : {seq_time / mp_time:.2f}x faster")
